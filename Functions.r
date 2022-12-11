@@ -180,11 +180,11 @@ run_pca <- function(metag, meta, Group){
   
   sample_site$level<-factor(meta[, Group])
   pca_plot <- ggplot(sample_site, aes(PCA1, PCA2,color=level)) +
-    theme_classic()+#去掉背景框
+    theme_classic()+ #Remove background box
     geom_vline(xintercept = 0, color = 'gray', size = 0.4) +
     geom_hline(yintercept = 0, color = 'gray', size = 0.4) +
-    geom_point(size = 3)+  #可在这里修改点的透明度、大小
-    scale_color_manual(values = brewer.pal(6,"Set2")) + #可在这里修改点的颜色
+    geom_point(size = 3)+  # Change transparency of dots
+    scale_color_manual(values = brewer.pal(6,"Set2")) + # Color dots
     theme(panel.grid = element_line(color = 'gray', linetype = 2, size = 0.1),
           panel.background = element_rect(color = 'black', fill = 'transparent'),
           legend.title=element_blank()
