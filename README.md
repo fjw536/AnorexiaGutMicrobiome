@@ -1,4 +1,4 @@
-README
+# README
 
 Author: Yong Fan (please contact yong.fan@sund.ku.dk if any questions)
 
