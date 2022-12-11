@@ -165,3 +165,31 @@ lm_btw_mats<-function(mat0,mat1,mat2,covar, direction = c(1,1),y_mat = 0){
               N          = col_var_row_var.N,
               uniq_N     = col_var_row_var.uN))
 }
+
+
+# Run PCA
+library(ade4)
+library(ggplot2)
+library(RColorBrewer)
+run_pca <- function(metag, meta, Group){
+  pca<- dudi.pca(metag, scal = FALSE, scan = FALSE)
+  pca_eig <- (pca$eig)[1:2] / sum(pca$eig)
+  sample_site <- data.frame({pca$li})[1:2]
+  sample_site$names <- rownames(sample_site)
+  names(sample_site)[1:2] <- c('PCA1', 'PCA2')
+  
+  sample_site$level<-factor(meta[, Group])
+  pca_plot <- ggplot(sample_site, aes(PCA1, PCA2,color=level)) +
+    theme_classic()+#去掉背景框
+    geom_vline(xintercept = 0, color = 'gray', size = 0.4) +
+    geom_hline(yintercept = 0, color = 'gray', size = 0.4) +
+    geom_point(size = 3)+  #可在这里修改点的透明度、大小
+    scale_color_manual(values = brewer.pal(6,"Set2")) + #可在这里修改点的颜色
+    theme(panel.grid = element_line(color = 'gray', linetype = 2, size = 0.1),
+          panel.background = element_rect(color = 'black', fill = 'transparent'),
+          legend.title=element_blank()
+    )+
+    labs(x = paste('PCA1: ', round(100 * pca_eig[1], 2), '%'), y = paste('PCA2: ', round(100 * pca_eig[2], 2), '%'))
+  
+  return(pca_plot)
+}
