@@ -20,7 +20,7 @@ filter_pre <- function(dat, prevalence, direction){
   return(dat_filter)
 }
 
-## linear model
+## linear model between two matrix and ajust for covariates
 lm_btw_mats<-function(mat0,mat1,mat2,covar, direction = c(1,1),y_mat = 0){
   # mat0: phenotypes, mat1: microbiome, mat2: covar
   # direction: 1 means samples in row and variables in column; 2 means samples in column and variables in row
