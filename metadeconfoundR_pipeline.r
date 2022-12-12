@@ -1,5 +1,7 @@
+# Load required libraries
 library(metadeconfoundR)
 
+# Import relevant matrix
 MSP <- data.frame(t(read.delim("MSP_matrix.txt", header = T, row.names = 1)))
 MSP.anno <- read.delim("IGC2.1989MSPs.taxo.tsv", header = T, row.names = 1)
 meta <- read.delim("Pheno.txt", header = T, row.names = 1)
