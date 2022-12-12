@@ -77,12 +77,6 @@ res$"ACME_p.adj" <- p.adjust(res$ACME_p)
 res$"ADE_p.adj" <- p.adjust(res$ADE_p)
 res$"Total_p.adj" <- p.adjust(res$Total_p)
 res$"Prop_p.adj" <- p.adjust(res$Prop_p)
-# library(dplyr)
-# res.new <- filter(res, res$ACME_p.adj < 0.05) # Indirect effect
-# res.new <- filter(res.new, res.new$ADE_p.adj < 0.05) # Direct effect
-# res.new <- filter(res.new, res.new$Total_p.adj < 0.05)
-# res.new <- filter(res.new, res.new$Prop_p.adj < 0.05)
-
 
 ### Mediation analysis linking microbiome to phenotyes through metabolome (direction 1 : phenotype --> msp --> metabolites)
 res.2 <- data.frame(Ass=0, ACME_beta=0,ACME_p=0, ADE_beta=0, ADE_p=0, Total_beta=0, Total_p=0, Prop=0, Prop_p=0)
@@ -107,11 +101,6 @@ res.2$"ACME_p.adj" <- p.adjust(res.2$ACME_p)
 res.2$"ADE_p.adj" <- p.adjust(res.2$ADE_p)
 res.2$"Total_p.adj" <- p.adjust(res.2$Total_p)
 res.2$"Prop_p.adj" <- p.adjust(res.2$Prop_p)
-# library(dplyr)
-# res.2.new <- filter(res.2, res.2$ACME_p.adj < 0.05)
-# res.2.new <- filter(res.2.new, res.2.new$ADE_p.adj < 0.05)
-# res.2.new <- filter(res.2.new, res.2.new$Total_p.adj < 0.05)
-# res.2.new <- filter(res.2.new, res.2.new$Prop_p.adj < 0.05)
 
 # Number of inferred causal relationships for direction 1 (from SGVs to phenotypes), direction 2 (from SGVs to Metabolites), and both.
 
