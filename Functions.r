@@ -222,10 +222,10 @@ cor_mat <- function(mat1, mat2, cor, direction = c(1,1)){
   dim(cor_traits_p_adj)=dim(cor_traits_p)
   rownames(cor_traits_p_adj)=rownames(cor_traits_p)
   colnames(cor_traits_p_adj)=colnames(cor_traits_p)
-  tmp=cor_traits_p<0.01
+  tmp=cor_traits_p_adj<0.05
   issig=rowSums(tmp, na.rm = T)
   rsig=na.omit(names(issig[issig>0]))
   issig=colSums(tmp, na.rm = T)
   csig=na.omit(names(issig[issig>0]))
-  try(return(list(rho = cor_traits_estimate[rsig, csig], p.value = cor_traits_p, BH = cor_traits_p[rsig, csig])), silent = T)
+  try(return(list(rho = cor_traits_estimate[rsig, csig], p.value = cor_traits_p, BH = cor_traits_p_adj[rsig, csig])), silent = T)
 }
