@@ -6,16 +6,6 @@ meta <- read.delim("Pheno.txt", header = T, row.names = 1)
 drug_use <- read.delim('Drug_use.txt', header = T, row.names = 1)
 
 # Remove MSPs with prevalence lower than 10%
-filter_pre <- function(dat, prevalence, direction){
-  if (direction=="column") {dat = t(dat)}
-  dat[is.na(dat)] <- 0
-  dat_logic <- dat==0
-  colsig <- colSums(dat_logic)
-  dat_sig <- names(colsig[colsig < nrow(dat)*(1- as.numeric(prevalence))])
-  dat_filter <- as.data.frame(dat[,dat_sig])
-  return(dat_filter)
-}
-
 msp.filter <- filter_pre(MSP.final, 0.1, 'row')
 
 # Combine drug intake data and metadata
