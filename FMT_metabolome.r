@@ -1,5 +1,11 @@
-library(dplyr); library(metadeconfoundR); library(ggplot2); library("stringr"); library(vegan)
-setwd("/Users/fjw536/Desktop/Anorexia/AN_DA/AN_FMT_mice_plasma_metabolome/")
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(vegan)
+library(ggpubr)
+
+## Read datasets
 metabolome <- read.delim('Metabolome_overlap.txt', header = T, row.names = 1) %>% t %>% data.frame
 names(metabolome)<-sapply(str_remove_all(colnames(metabolome),"X"),"[")
 meta <- read.delim('Meta.txt', header = T, row.names = 1)
@@ -8,7 +14,7 @@ meta <- read.delim('Meta.txt', header = T, row.names = 1)
 meta$Group <- as.factor(meta$Group)
 meta$Batch <- as.factor(meta$Batch)
 
-# For the whole dataset
+## For the whole dataset
 res <- matrix(NA, nrow = ncol(metabolome), ncol = 5) %>% data.frame
 rownames(res) <- colnames(metabolome)
 colnames(res) <-  c('Log2FC_D', 'p_D', 'p_R', 'log2FC_R', 'Color')
@@ -28,7 +34,8 @@ for (i in 1:nrow(res)) {
 table(res$Color)
 res <- res[order(-res$Log2FC_D),]
 
-
+## Visualization
+## Donor dataset
 combine_D <- ggplot(res, aes(x=reorder(rownames(res), +Log2FC_D), y=Log2FC_D, fill = as.factor(Color))) + 
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c('grey', '#3288ff'))+
@@ -40,7 +47,7 @@ combine_D <- ggplot(res, aes(x=reorder(rownames(res), +Log2FC_D), y=Log2FC_D, fi
         panel.grid = element_blank()) +
   geom_hline(yintercept = 0)
 
-
+## Recipient dataset
 combine_R <- ggplot(res, aes(x=reorder(rownames(res), +Log2FC_D), y=log2FC_R, fill = as.factor(Color))) + 
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c('grey', '#3288ff'))+
@@ -54,17 +61,13 @@ combine_R <- ggplot(res, aes(x=reorder(rownames(res), +Log2FC_D), y=log2FC_R, fi
         panel.grid = element_blank()) +
   geom_hline(yintercept = 0)
 
-
-library(ggpubr)
-
 p_combine <- ggarrange(combine_D, combine_R, ncol = 2, widths = c(1, 0.55))
 p_combine
-
 
 p_metabolome <- ggarrange(p_b1, p_b3, p_b4, ncol = 3)
 
 p_metabolome
 
-pdf('/Users/fjw536/Desktop/Anorexia/AN_DA/FMT_metabolome.pdf', height = 8, width = 6)
+pdf('FMT_metabolome.pdf', height = 8, width = 6)
 print(p_combine)
 dev.off()
