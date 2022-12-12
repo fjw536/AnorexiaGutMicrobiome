@@ -88,9 +88,7 @@ for (i in 1:nrow(m2)) {
 
 
 wilcox.test(m2[nc.row, 3], m2[an.row, 3])
-wilcox.test(m2[nc.row, 3], m2[bp.row, 3])
 wilcox.test(m2[bp.row, 3], m2[rs.row, 3])
-wilcox.test(m2[nc.row, 3], m2[rs.row, 3])
 wilcox.test(m2[IN.row, 3], m2[out.row, 3])
 
 
