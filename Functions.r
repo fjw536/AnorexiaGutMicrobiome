@@ -194,7 +194,7 @@ run_pca <- function(metag, meta, Group){
   return(pca_plot)
 }
 
-# Correlation between two matrix
+# Correlation between two matrix and ajust for the confounding factors
 cor_mat <- function(mat1, mat2, cor, direction = c(1,1)){
   if(direction[1]==2){mat1 =t(mat1)}
   if(direction[2]==2){mat2 =t(mat2)}
