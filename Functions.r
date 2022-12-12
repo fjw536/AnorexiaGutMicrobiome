@@ -193,3 +193,39 @@ run_pca <- function(metag, meta, Group){
   
   return(pca_plot)
 }
+
+# Correlation between two matrix
+cor_mat <- function(mat1, mat2, cor, direction = c(1,1)){
+  if(direction[1]==2){mat1 =t(mat1)}
+  if(direction[2]==2){mat2 =t(mat2)}
+  tmpMat=array(NA, c(length(colnames(mat1)), length(colnames(mat2)),2))
+  dimnames(tmpMat) [[1]]=colnames(mat1)
+  dimnames(tmpMat) [[2]]=colnames(mat2)
+  dimnames(tmpMat) [[3]]=c("estimate", "p.value")
+  for (i in 1:length(colnames(mat1))) {
+    for (j in 1:length(colnames(mat2))) {
+      data <- as.data.frame(cbind(mat1[, i], mat2[, j])) %>% na.omit
+      # if (nrow(data) < 3) {
+      #   tmpMat[colnames(mat1)[i],colnames(mat2)[j],"estimate"]= NA
+      #   tmpMat[colnames(mat1)[i],colnames(mat2)[j],"p.value"]= NA
+      #   remove(data)
+      # } else {
+      tmpMat[colnames(mat1)[i],colnames(mat2)[j],"estimate"]=cor.test(as.numeric(data[, 1]), as.numeric(data[, 2]), method = cor, exact = F)$estimate
+      tmpMat[colnames(mat1)[i],colnames(mat2)[j],"p.value"]=cor.test(as.numeric(data[, 1]), as.numeric(data[, 2]), method = cor, exact = F)$p.value
+      remove(data)
+    }
+  }
+  cor_traits=tmpMat
+  cor_traits_p=cor_traits[,,"p.value"]
+  cor_traits_estimate=cor_traits[,,"estimate"]
+  cor_traits_p_adj=p.adjust(cor_traits_p, method = "bonferroni")
+  dim(cor_traits_p_adj)=dim(cor_traits_p)
+  rownames(cor_traits_p_adj)=rownames(cor_traits_p)
+  colnames(cor_traits_p_adj)=colnames(cor_traits_p)
+  tmp=cor_traits_p<0.01
+  issig=rowSums(tmp, na.rm = T)
+  rsig=na.omit(names(issig[issig>0]))
+  issig=colSums(tmp, na.rm = T)
+  csig=na.omit(names(issig[issig>0]))
+  try(return(list(rho = cor_traits_estimate[rsig, csig], p.value = cor_traits_p, BH = cor_traits_p[rsig, csig])), silent = T)
+}
