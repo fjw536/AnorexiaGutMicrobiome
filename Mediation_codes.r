@@ -52,6 +52,7 @@ ED.qtrans <- apply(ED.qtrans, 2, as.numeric) %>% data.frame
 cov.qtrans <- apply(cov.qtrans, 2, as.numeric) %>% data.frame
 
 set.seed(100)
+# This is an example code testing the hypothesis where phenotype impact microbiome through metabolites
 # Now start the mediation analysis (direction 1 : phenotype --> metabolites --> msp)
 library(mediation)
 pre <- read.delim("/Users/fjw536/Desktop/Anorexia/AN_DA/pre.txt", row.names = 1) # Import a matrix of sample IDs
