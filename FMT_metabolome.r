@@ -34,7 +34,7 @@ for (i in 1:nrow(res)) {
 table(res$Color)
 res <- res[order(-res$Log2FC_D),]
 
-## Visualization
+## Extended Data Figure 10c - Visualization
 ## Donor dataset
 combine_D <- ggplot(res, aes(x=reorder(rownames(res), +Log2FC_D), y=Log2FC_D, fill = as.factor(Color))) + 
   geom_bar(stat = "identity") +
