@@ -2,12 +2,12 @@
 
 Author: Yong Fan (please contact yong.fan@sund.ku.dk if any questions)
 
-Current status: published on Nature Microbiology
+Current status: published (Nature Microbiology)
 
 Publication detail:
 
-The gut microbiota contributes to the pathogenesis of anorexia nervosa in humans and mice
+Fan Y. et al., The gut microbiota contributes to the pathogenesis of anorexia nervosa in humans and mice
 
-DOI: https://doi.org/10.1038/s41564-023-01355-5
+Link: https://doi.org/10.1038/s41564-023-01355-5
 
 Year: 2023
