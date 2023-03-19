@@ -2,7 +2,7 @@
 
 Author: Yong Fan (please contact yong.fan@sund.ku.dk if any questions)
 
-Current status: published
+Current status: published on Nature Microbiology
 
 Publication detail:
 
