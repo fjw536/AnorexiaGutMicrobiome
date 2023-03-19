@@ -216,7 +216,7 @@ tmp <- cbind(com.b.asv.res, tax_meta[rownames(com.b.asv.res),])
 tmp$'Annotation' <- paste(rownames(tmp), ': p_',tmp$Phylum, '|f_', tmp$Family, '|g_', tmp$Genus, sep = '')
 com.b.asv.res[, 6] <- tmp$'Annotation'
 
-
+# Figure 6c - Visualization
 com.b.asv.res.plot <- com.b.asv.res[order(-com.b.asv.res$CliffDelta_R), ]
 com.b.asv.res.plot$V6 <- factor(com.b.asv.res.plot$V6, levels = com.b.asv.res.plot$V6)
 
