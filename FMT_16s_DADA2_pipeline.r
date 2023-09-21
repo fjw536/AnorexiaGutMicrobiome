@@ -12,7 +12,7 @@ plotQualityProfile(fnFs[25:26])
 
 plotQualityProfile(fnRs[1:2])
 plotQualityProfile(fnRs[c(5:6, 9:10)])
-plotQualityProfile(fnRs[c(25:26, 35:36)])
+plotQualityProfile(fnRs[25:26])
 
 filtFs <- file.path("Filtered", paste0(sample.names, "_F_filt.fastq.gz"))
 filtRs <- file.path("Filtered", paste0(sample.names, "_R_filt.fastq.gz"))
