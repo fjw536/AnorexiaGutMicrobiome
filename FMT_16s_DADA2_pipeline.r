@@ -52,7 +52,6 @@ rownames(track) <- sample.names
 head(track)
 
 taxa <- assignTaxonomy(seqtab.nochim, "silva_nr99_v138.1_wSpecies_train_set.fa.gz", multithread=TRUE)
-taxa <- addSpecies(taxa, "silva_species_assignment_v138.1.fa.gz")
 head(taxa)
 
 taxa.print <- taxa
